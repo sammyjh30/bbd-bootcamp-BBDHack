@@ -1,7 +1,7 @@
 # bbd-bootcamp-BBDHack
 
 
-# Bried
+# Brief
 - You are required to identify something you can improve in the JHB office. 
 - It can be anything. 
 - However, the solution has to be camera and/or microphone based. 
