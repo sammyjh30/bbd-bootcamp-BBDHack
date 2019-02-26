@@ -11,6 +11,9 @@ import { DemoPageComponent } from './demo-page/demo-page.component';
 import { ContentService } from './content.service';
 import { AddComponent } from './add/add.component';
 
+import { ReactiveFormsModule } from '@angular/forms';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,7 +26,8 @@ import { AddComponent } from './add/add.component';
     BrowserAnimationsModule,
     MatToolbarModule,
     MatButtonModule,
-    MatCardModule
+    MatCardModule,
+    ReactiveFormsModule
   ],
   providers: [ContentService],
   bootstrap: [AppComponent]
