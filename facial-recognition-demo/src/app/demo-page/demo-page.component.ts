@@ -16,4 +16,10 @@ export class DemoPageComponent implements OnInit {
     this.page = this.contentService.pages['home'];
   }
 
+  scanFace() {
+    console.log("Scanning");
+    // console.info(this.page['input']);
+    this.page['input'] = 'Scanning...';  
+  }
+
 }

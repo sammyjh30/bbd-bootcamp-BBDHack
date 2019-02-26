@@ -9,11 +9,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DemoPageComponent } from './demo-page/demo-page.component';
 
 import { ContentService } from './content.service';
+import { AddComponent } from './add/add.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    DemoPageComponent
+    DemoPageComponent,
+    AddComponent
   ],
   imports: [
     BrowserModule,

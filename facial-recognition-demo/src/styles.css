@@ -1,2 +1,36 @@
 /* You can add global styles to this file, and also import other style files */
 @import '~@angular/material/prebuilt-themes/indigo-pink.css';
+body {
+    margin: 0;
+    position: relative;
+    /* top: -21px; */
+}
+
+h1 {
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    line-height: normal;
+    font-size: 48px;
+    text-align: center;
+    color: #EBEBEB;
+    margin-top: 20px;
+    display: inline-block;
+    cursor: pointer;
+    outline: none;
+    padding-left: 81px;
+}
+
+h2 {
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    line-height: normal;
+    /* font-size: 48px; */
+    text-align: center;
+    color: #5E5369;
+    /* margin-top: 20px; */
+    /* display: inline-block; */
+    /* cursor: pointer; */
+    /* outline: none; */
+}

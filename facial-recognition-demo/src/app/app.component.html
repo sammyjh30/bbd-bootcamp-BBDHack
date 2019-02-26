@@ -1,8 +1,14 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    {{title}}
-  </h1>
-  <app-demo-page></app-demo-page>
+<div>
+  <nav class="header">
+    <h1 routerLink="/home">
+      <!-- {{title}} -->
+      Demo
+    </h1>
+    <img src="../assets/plus.png" id="plus" 
+          title="Add New User" alt="Link to add a new user to the database"
+          routerLink="/add"/>
+  </nav>
+  <router-outlet></router-outlet>
+  <!-- <app-demo-page></app-demo-page> -->
 
-<router-outlet></router-outlet>
+</div>
