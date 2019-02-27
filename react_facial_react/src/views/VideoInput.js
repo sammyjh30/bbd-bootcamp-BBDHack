@@ -10,7 +10,7 @@ const WIDTH = 100;
 const HEIGHT = 100;
 const inputSize = 160;
 
-class VideoInput extends Component {
+export default class VideoInput extends Component {
   constructor(props) {
     super(props);
     this.webcam = React.createRef();
@@ -23,6 +23,13 @@ class VideoInput extends Component {
       facingMode: null
     };
   }
+
+  setLabelName(name) {
+    if (this.props && this.props.setLabel()) {
+      // if (this.props.label == null)
+        this.props.setLabel(name);
+    }
+  };
 
   componentWillMount = async () => {
     await loadModels();
@@ -81,6 +88,8 @@ class VideoInput extends Component {
     }
   };
 
+ 
+
   render() {
     const { detections, match, facingMode } = this.state;
     let videoConstraints = null;
@@ -130,6 +139,7 @@ class VideoInput extends Component {
                   }}
                 >
                   {match[i]._label}
+                  {this.setLabelName(match[i]._label)}
                 </p>
               ) : null}
             </div>
@@ -175,4 +185,4 @@ class VideoInput extends Component {
   }
 }
 
-export default withRouter(VideoInput);
+// export default withRouter(VideoInput);
