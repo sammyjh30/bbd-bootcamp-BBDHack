@@ -10,7 +10,7 @@ CREATE TABLE [dbo].[Users](
 	[firstName] [varchar](50) NULL,
 	[lastName] [varchar](50) NULL,
 	[position] [varchar](50) NULL,
-	PRIMARY KEY(UserID)
+	CONSTRAINT PK_userID PRIMARY KEY(UserID)
 );
 GO
 
@@ -21,8 +21,8 @@ CREATE TABLE [dbo].[Reference_images](
     [front_side][varbinary](max),
     [right_side][varbinary](max),
     [left_side][varbinary](max),
-    PRIMARY KEY (ImageID),
-    FOREIGN KEY (UserID) REFERENCES Users(UserID)
+    CONSTRAINT PK_imageId PRIMARY KEY (ImageID),
+    CONSTRAINT FK_Ref_images_userID FOREIGN KEY (userID) REFERENCES Users(userID)
 );
 GO
 
@@ -44,8 +44,6 @@ GO
 CREATE PROCEDURE updateUser(@user_id INT, @fname VARCHAR(50), @lname VARCHAR(50), @position VARCHAR(50))
 AS
 UPDATE Users
-SET Users.userID = @user_id, Users.firstName = @fname, Users.lastName = @lname, Users.position  = @postion
+SET Users.firstName = @fname, Users.lastName = @lname, Users.position  = @position
 WHERE Users.userID = @user_id;
 GO
-
-EXEC add

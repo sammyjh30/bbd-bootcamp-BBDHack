@@ -1,6 +1,7 @@
 <?php
-    $host = "mysql:host=localhost";
-    $db_name = "Facial_RecognitionDB";
-    $username = "root";
+    $host = "localhost:4200";
+    $db_name = "Facial_RecogDB";
+    $username = "BBDNET\bbdnet1946";
     $password = "";
- ?>
+
+?>
