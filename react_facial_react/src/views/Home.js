@@ -15,16 +15,29 @@ export default class Home extends Component {
 
   scanFace(e) {
     e.preventDefault();
-    this.setState({screenValue: "Scanning..."});
-    this.setState({scanStart: true});
+    this.setState({ screenValue: "Scanning..." });
+    this.setState({ scanStart: true });
   }
 
-  setLabel(name) {
-    console.log("NAME: " + name);
-    if (name) {
-      this.setState({label: name});
+  setLabel = (name) => {
+    console.log("Incoming name: " + name);
+    console.log("Current State:");
+    console.info(this.state);
+    if (this.state.scanStart == true && name != null && this.state.label == null) {
+      console.log("We are scanning");
+      this.setState({ label: name });
+      // this.setState({ scanStart: false });
+      if (name == "unknown") {
+        this.setState({ screenValue: "Sorry I don't recognise you :(" });
+      } else {
+        this.setState({ screenValue: "Hi " + name });
+      }
     }
-    
+    // if (this.state.scanStart == true && this.state.label === null && name !== null){
+    // // if (name != null && this.state.label == null) {
+    //   console.log("NAME: " + name);
+    //   this.setState({label: name});
+    // }    
   }
 
   render() {
@@ -32,7 +45,7 @@ export default class Home extends Component {
       <div>
         <div className="content">
           <div id="imageScan">
-            {this.state.scanStart === true ? <VideoInput label={this.state.label} setLabel={this.setLabel}/> : null}
+            {this.state.scanStart === true ? <VideoInput label={this.state.label} setLabel={this.setLabel} /> : null}
           </div>
           <div id="vendingMachine">
             <div id="vendingBackground">
@@ -42,13 +55,13 @@ export default class Home extends Component {
                 </div>
               </div>
               <button id="scanButton" onClick={(e) => this.scanFace(e)}></button>
-            <br />
-            <div id="screenBase">
-              <div id="inputScreen">{this.state.screenValue}</div>
+              <br />
+              <div id="screenBase">
+                <div id="inputScreen">{this.state.screenValue}</div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
       </div >
 
 

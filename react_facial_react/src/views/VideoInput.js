@@ -25,9 +25,14 @@ export default class VideoInput extends Component {
   }
 
   setLabelName(name) {
-    if (this.props && this.props.setLabel()) {
+    // console.log("test 1 NAME: " + name);
+    // console.log("Props:");
+    // console.info(this.props);
+    if (this.props && (typeof(this.props.setLabel) === 'function')) {
+      // console.log("passed props");
       // if (this.props.label == null)
-        this.props.setLabel(name);
+      // console.log("test 2 NAME: " + name);
+      this.props.setLabel(name);
     }
   };
 
@@ -88,8 +93,6 @@ export default class VideoInput extends Component {
     }
   };
 
- 
-
   render() {
     const { detections, match, facingMode } = this.state;
     let videoConstraints = null;
@@ -139,6 +142,7 @@ export default class VideoInput extends Component {
                   }}
                 >
                   {match[i]._label}
+                  {console.log(match[i]._label)}
                   {this.setLabelName(match[i]._label)}
                 </p>
               ) : null}
