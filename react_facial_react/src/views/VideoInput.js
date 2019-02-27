@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
 import Webcam from 'react-webcam';
 import { loadModels, getFullFaceDescription, createMatcher } from '../api/face';
 
@@ -15,17 +14,17 @@ export default class VideoInput extends Component {
     super(props);
     this.webcam = React.createRef();
     this.state = {
-      fullDesc      : null,
-      detections    : null,
-      descriptors   : null,
-      faceMatcher   : null,
-      match         : null,
-      facingMode    : null
+      fullDesc: null,
+      detections: null,
+      descriptors: null,
+      faceMatcher: null,
+      match: null,
+      facingMode: null
     };
   }
 
   setLabelName(name) {
-    if (this.props && (typeof(this.props.setLabel) === 'function')) {
+    if (this.props && (typeof (this.props.setLabel) === 'function')) {
       this.props.setLabel(name);
     }
   };
@@ -63,16 +62,29 @@ export default class VideoInput extends Component {
   componentWillUnmount() {
     clearInterval(this.interval);
   }
-  
-//   callChildMethod() {
-//     alert('Hello World');
-//     // to return some value
-//     // return this.state.someValue;
-// }
 
-getAlert() {
-  alert('getAlert from Child');
-}
+  //   callChildMethod() {
+  //     alert('Hello World');
+  //     // to return some value
+  //     // return this.state.someValue;
+  // }
+
+  getAlert(side) {
+    var newImg = this.webcam.current.getScreenshot();
+    // console.log(newImg);
+    // console.log("Side = " + side);
+    // alert('getAlert from Child');
+    if (this.props && (typeof (this.props.changePic) === 'function')) {
+      if (side == "front") {
+        this.props.changePic("front", newImg);
+      } else if (side == "left") {
+        this.props.changePic("left", newImg);
+      } else if (side == "right") {
+        this.props.changePic("right", newImg);
+      }
+    }
+
+  }
 
   capture = async () => {
     if (!!this.webcam.current) {

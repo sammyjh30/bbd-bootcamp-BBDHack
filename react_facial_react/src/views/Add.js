@@ -1,5 +1,5 @@
-import React, { Component, forwardRef, useRef, useImperativeHandle } from "react";
-import { HelpBlock, ButtonGroup, ButtonToolbar, Button, FormGroup, FormControl, ControlLabel } from "react-bootstrap";
+import React, { Component } from "react";
+import { FormGroup, FormControl, ControlLabel } from "react-bootstrap";
 import "./Add.css";
 import VideoInput from './VideoInput';
 
@@ -13,26 +13,46 @@ export default class Add extends Component {
             position: null,
             face_front: null,
             face_left: null,
-            face_right: null
+            face_right: null,
+            getImage: false
         };
         this.child = React.createRef();
+        this.changePic = this.changePic.bind(this);
+        this.submitInfo = this.submitInfo.bind(this);
     }
-
+    submitInfo(e) {
+        e.preventDefault();
+        console.log("New information:");
+        console.info(this.state);
+        //Call IMG scanner to get desriptors
+        //Send through to database
+    }
     handleChange = event => {
         this.setState({
             [event.target.id]: event.target.value
         });
     }
-    // triggerChildAlert(){
-    //     this.refs.child.callChildMethod();
-    //     // to get child parent returned  value-
-    //     // this.value = this.refs.child.callChildMethod();
-    //     // alert('Returned value- '+this.value);
-    // }
 
-    onClick = () => {
-        this.child.current.getAlert();
-      };
+    onImageClick = (e) => {
+        e.preventDefault();
+        this.child.current.getAlert(e.currentTarget.getAttribute('data-column'));
+    };
+
+    changePic(side, img) {
+        console.log("side= " + side + "     img= " + img);
+        // console.log(this.state.lastname);
+        if (img != null && side != null) {
+            if (side == "front") {
+                console.log("Entered front");
+                this.setState({ face_front: img });
+            } else if (side == "left") {
+                this.setState({ face_left: img });
+            } else if (side == "right") {
+                this.setState({ face_right: img });
+            }
+
+        }
+    }
 
     render() {
         return (
@@ -88,32 +108,38 @@ export default class Add extends Component {
                     </div>
                     <div id="photoInput">
                         <div id="video-sample">
-                            <VideoInput  ref={this.child}/>
+                            <VideoInput ref={this.child} changePic={this.changePic} />
                         </div>
                         <div id="newImages">
                             <div id="front-photo">
-                                <ControlLabel>Front View</ControlLabel>
+                                <ControlLabel>Front View</ControlLabel><br/>
+                                <button value="front" data-column="front" onClick={this.onImageClick}>Update Front</button>
                                 {this.state.face_front ? <div id="face-front-box">
                                     <img src={this.state.face_front} />
                                 </div>
                                     : <div id="empty-img"></div>}
-                                {/* <button type="" className="registerbtn">Register</button> */}
-                                <button onClick={this.onClick}>Click</button>
-                                {/* <button onClick={() => this.clickChild()}>Click</button> */}
                             </div>
                             <div id="left-photo">
                                 <ControlLabel>Left View</ControlLabel><br />
-
+                                <button value="left" data-column="left" onClick={this.onImageClick}>Update Left</button>
+                                {this.state.face_left ? <div id="face-front-box">
+                                    <img src={this.state.face_left} />
+                                </div>
+                                    : <div id="empty-img"></div>}
                             </div>
                             <div id="right-photo">
                                 <ControlLabel>Right View</ControlLabel><br />
-
+                                <button value="right" data-column="right" onClick={this.onImageClick}>Update Right</button>
+                                {this.state.face_right ? <div id="face-front-box">
+                                    <img src={this.state.face_right} />
+                                </div>
+                                    : <div id="empty-img"></div>}
                             </div>
                         </div>
                     </div>
                     <div id="register-button">
                         <hr />
-                        <button type="submit" className="registerbtn">Register</button>
+                        <button type="submit" className="registerbtn" onClick={this.submitInfo}>Register</button>
                         <hr />
                     </div>
                 </form>
