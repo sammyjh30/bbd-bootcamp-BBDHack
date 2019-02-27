@@ -2,10 +2,6 @@ const express = require('express');
 const app = express();
 const mssql = require('mssql')
 
-// app.listen(4200, () => {
-//     console.log("Server started on port: 4200");
-// });
-
 const db_config = {
     server : 'localhost',
     password : 'whatever',
