@@ -55,11 +55,11 @@
 }
 
 nav #plus:visited, a:link {
-    background-color: rgba(197, 195, 195, 0.63);
+    /* background-color: rgba(197, 195, 195, 0.63); */
 }
 
 nav #plus:hover {
-    background-color: rgba(197, 195, 195, 0.63);
+    background-color: rgba(129, 129, 129, 0.63);
 }
 nav #plus.active {
     background-color: rgba(197, 195, 195, 0.63);

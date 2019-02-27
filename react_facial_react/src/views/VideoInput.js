@@ -15,23 +15,17 @@ export default class VideoInput extends Component {
     super(props);
     this.webcam = React.createRef();
     this.state = {
-      fullDesc: null,
-      detections: null,
-      descriptors: null,
-      faceMatcher: null,
-      match: null,
-      facingMode: null
+      fullDesc      : null,
+      detections    : null,
+      descriptors   : null,
+      faceMatcher   : null,
+      match         : null,
+      facingMode    : null
     };
   }
 
   setLabelName(name) {
-    // console.log("test 1 NAME: " + name);
-    // console.log("Props:");
-    // console.info(this.props);
     if (this.props && (typeof(this.props.setLabel) === 'function')) {
-      // console.log("passed props");
-      // if (this.props.label == null)
-      // console.log("test 2 NAME: " + name);
       this.props.setLabel(name);
     }
   };
@@ -69,6 +63,16 @@ export default class VideoInput extends Component {
   componentWillUnmount() {
     clearInterval(this.interval);
   }
+  
+//   callChildMethod() {
+//     alert('Hello World');
+//     // to return some value
+//     // return this.state.someValue;
+// }
+
+getAlert() {
+  alert('getAlert from Child');
+}
 
   capture = async () => {
     if (!!this.webcam.current) {
@@ -142,7 +146,6 @@ export default class VideoInput extends Component {
                   }}
                 >
                   {match[i]._label}
-                  {console.log(match[i]._label)}
                   {this.setLabelName(match[i]._label)}
                 </p>
               ) : null}

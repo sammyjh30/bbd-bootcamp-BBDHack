@@ -1,12 +1,39 @@
 @import url(http://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300ita‌​lic,400italic,500,500italic,700,700italic,900italic,900);
 
 .content {
-    padding-top: 104px;
+    padding-top: 60px;
     font-family: 'Roboto', sans-serif;
+}
+
+label {
+  font-size: 16px;
 }
 
 #userInfo {
     width: 50%;
+    overflow: hidden;
+    text-align: left;
+    float: left;
+    display: inline-block;
+  }
+
+#photoInput {
+    width: 40%;
+    /* float: right; */
+  display: inline-block;
+  align-content: center;
+  text-align: left;
+  /* padding: 10%; */
+}
+
+#register-button {
+  display: block;
+  width: 100%;
+}
+
+.form-control {
+  width: 45% !important;
+  max-width: 569px;
 }
 
 * {box-sizing: border-box}
@@ -58,4 +85,11 @@ hr {
 /* Add a blue text color to links */
 a {
   color: dodgerblue;
+}
+
+#empty-img {
+  width: 100px;
+  height: 100px;
+  background-color: rgba(115, 115, 116, 0.63);
+  margin: 2% 15%;
 }
