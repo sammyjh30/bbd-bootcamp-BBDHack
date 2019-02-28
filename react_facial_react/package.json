@@ -2,6 +2,7 @@
   "name": "facial_recognition_app",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost:4000",
   "dependencies": {
     "express": "^4.16.4",
     "face-api.js": "^0.18.0",

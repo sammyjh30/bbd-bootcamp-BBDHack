@@ -8,7 +8,8 @@ export default class Home extends Component {
     this.state = {
       screenValue: "Press button to scan...",
       scanStart: false,
-      label: null
+      label: null,
+      userInfo: null
     };
   }
 
@@ -17,7 +18,30 @@ export default class Home extends Component {
     this.setState({ screenValue: "Scanning..." });
     this.setState({ scanStart: true });
   }
-
+  getUserByName = (name) => {
+    // console.log("Adding User matches")
+    // Get Matches
+    try {
+      fetch('/getUserByName/' + name, {
+        // method: "GET",
+        headers: {
+          "Content-Type": "application/json; charset=utf-8",
+        },
+      })
+        .then(response => response.json())
+        .then((responseJSON) => {
+          console.log("JSON ID test = ");
+          console.info(responseJSON);
+          this.setState({userInfo: responseJSON[0]});
+          console.log(responseJSON[0])
+          // this.setState({ userMatches: responseJSON });
+          // console.log("APP Matches = " + JSON.stringify(this.state.userMatches));
+        })
+        .catch(err => console.error(err))
+    } catch (e) {
+      alert(e.message);
+    }
+  }
   setLabel = (name) => {
     console.log("Incoming name: " + name);
     console.log("Current State:");
@@ -30,6 +54,7 @@ export default class Home extends Component {
         this.setState({ screenValue: "Sorry I don't recognise you :(" });
       } else {
         this.setState({ screenValue: "Hi " + name });
+        this.getUserByName(name);
       }
     }
     // if (this.state.scanStart == true && this.state.label === null && name !== null){
@@ -46,8 +71,14 @@ export default class Home extends Component {
           <div id="imageScan">
             {this.state.scanStart === true ? <VideoInput label={this.state.label} setLabel={this.setLabel} /> : null}
             <div id="userInfoList">
-            <br/><br/><br/><br/>>
-            <p>Will display user info retrieved from database</p>
+            <br/><br/><br/><br/>
+            {this.state.userInfo && this.state.userInfo.firstName && this.state.userInfo.lastName && this.state.userInfo.userID && this.state.userInfo.position? <div>
+                                                                      <p><strong>First Name:</strong> {this.state.userInfo.firstName}</p>
+                                                                      <p><strong>Last Name:</strong> {this.state.userInfo.lastName}</p>
+                                                                      <p><strong>User Domain:</strong> bbdnet{this.state.userInfo.userID}</p>
+                                                                      <p><strong>Postion:</strong> {this.state.userInfo.position}</p>
+                                                                    </div>
+            : null}
             </div>
           </div>
           <div id="vendingMachine">

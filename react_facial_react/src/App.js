@@ -38,7 +38,7 @@
 //               {/* routerLink="/add" /> */}
 //           {/* </nav> */}
 //           {/* </Router> */}
-          
+
 //         </div>
 //       </div>
 //     );
@@ -66,34 +66,82 @@ class App extends Component {
     this.getUserImages();
   }
 
+  getUsers = () => {
+    console.log("Getting Users")
+    try {
+      fetch('/getAllUsers', {
+        headers: {
+          "Content-Type": "application/json; charset=utf-8",
+        },
+      })
+        .then(response => response.json())
+        .then((responseJSON) => {
+          // console.log("JSON users test = ");
+          // console.info(responseJSON);
+          // this.setState({ userMatches: responseJSON });
+          // console.log("APP Matches = " + JSON.stringify(this.state.userMatches));
+        })
+        .catch(err => console.error(err))
+    } catch (e) {
+      alert(e.message);
+    }
+  }
+
+  // getUserByName = (name) => {
+  //   // console.log("Adding User matches")
+  //   // Get Matches
+  //   try {
+  //     fetch('/getUserByName' + id, {
+  //       // method: "GET",
+  //       headers: {
+  //         "Content-Type": "application/json; charset=utf-8",
+  //       },
+  //       body: JSON.stringify({
+  //         name: name
+  //       })
+  //     })
+  //       .then(response => response.json())
+  //       .then((responseJSON) => {
+  //         console.log("JSON ID test = ");
+  //         console.info(responseJSON);
+  //         // this.setState({ userMatches: responseJSON });
+  //         // console.log("APP Matches = " + JSON.stringify(this.state.userMatches));
+  //       })
+  //       .catch(err => console.error(err))
+  //   } catch (e) {
+  //     alert(e.message);
+  //   }
+  // }
+
   componentWillMount() {
     this.getUserImages();
+    // this.getUsers();
   }
 
   render() {
 
     const childProps = {
-      addUser            : this.addUser
+      addUser: this.addUser
     };
     return (
       <div className="App container">
-      <Navbar fluid collapseOnSelect>
-        <Navbar.Header>
-          <Navbar.Brand>
-            <Link to="/">Demo</Link>
-          </Navbar.Brand>
-          <Navbar.Toggle />
-        </Navbar.Header>
-        <Navbar.Collapse>
-          <Nav pullRight>
-            <NavItem href="/add">Add</NavItem>
-            <NavItem href="/photo">Photo</NavItem>
-            <NavItem href="/camera">Camera</NavItem>
-          </Nav>
-        </Navbar.Collapse>
-      </Navbar>
-      <Routes childProps={childProps}/>
-    </div>
+        <Navbar fluid collapseOnSelect>
+          <Navbar.Header>
+            <Navbar.Brand>
+              <Link to="/">Demo</Link>
+            </Navbar.Brand>
+            <Navbar.Toggle />
+          </Navbar.Header>
+          <Navbar.Collapse>
+            <Nav pullRight>
+              <NavItem href="/add">Add</NavItem>
+              <NavItem href="/photo">Photo</NavItem>
+              <NavItem href="/camera">Camera</NavItem>
+            </Nav>
+          </Navbar.Collapse>
+        </Navbar>
+        <Routes childProps={childProps} />
+      </div>
     );
   }
 }
