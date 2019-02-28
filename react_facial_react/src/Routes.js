@@ -5,10 +5,10 @@ import ImageInput from './views/ImageInput';
 import VideoInput from './views/VideoInput';
 import Add from './views/Add';
 
-export default () =>
+export default ({childProps}) =>
     <Switch>
         <Route exact path="/" component={Home} />
         <Route exact path="/photo" component={ImageInput} />
         <Route exact path="/camera" component={VideoInput} />
-        <Route exact path="/add" component={Add} />
+        <Route exact path="/add" component={Add} props={childProps} />
     </Switch>;

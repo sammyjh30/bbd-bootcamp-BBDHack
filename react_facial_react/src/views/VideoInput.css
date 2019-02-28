@@ -1,0 +1,13 @@
+.labelName {
+    margin-top: 0;
+    color: black;
+    width: auto;
+    font-size: 24px;
+    font-weight: bolder;
+    text-shadow:
+       3px 3px 0 #fff,
+     -1px -1px 0 #fff,  
+      1px -1px 0 #fff,
+      -1px 1px 0 #fff,
+       1px 1px 0 #fff;
+}

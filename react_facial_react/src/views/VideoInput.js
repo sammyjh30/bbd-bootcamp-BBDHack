@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Webcam from 'react-webcam';
 import { loadModels, getFullFaceDescription, createMatcher } from '../api/face';
+import "./VideoInput.css";
 
 // Import face profile
 const JSON_PROFILE = require('../descriptors/bnk48.json');
@@ -63,27 +64,17 @@ export default class VideoInput extends Component {
     clearInterval(this.interval);
   }
 
-  //   callChildMethod() {
-  //     alert('Hello World');
-  //     // to return some value
-  //     // return this.state.someValue;
-  // }
-
   getAlert(side) {
     var newImg = this.webcam.current.getScreenshot();
-    // console.log(newImg);
-    // console.log("Side = " + side);
-    // alert('getAlert from Child');
     if (this.props && (typeof (this.props.changePic) === 'function')) {
       if (side == "front") {
-        this.props.changePic("front", newImg);
+        this.props.changePic("front", newImg, this.state.descriptors);
       } else if (side == "left") {
-        this.props.changePic("left", newImg);
+        this.props.changePic("left", newImg, this.state.descriptors);
       } else if (side == "right") {
-        this.props.changePic("right", newImg);
+        this.props.changePic("right", newImg, this.state.descriptors);
       }
     }
-
   }
 
   capture = async () => {
@@ -147,13 +138,8 @@ export default class VideoInput extends Component {
             >
               {!!match && !!match[i] ? (
                 <p
+                  className="labelName"
                   style={{
-                    backgroundColor: 'blue',
-                    border: 'solid',
-                    borderColor: 'blue',
-                    width: _W,
-                    marginTop: 0,
-                    color: '#fff',
                     transform: `translate(-3px,${_H}px)`
                   }}
                 >
@@ -203,5 +189,3 @@ export default class VideoInput extends Component {
     );
   }
 }
-
-// export default withRouter(VideoInput);

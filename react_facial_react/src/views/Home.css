@@ -104,5 +104,12 @@
 
 #imageScan {
     float: left;
-    margin: 20% 12%;
+    margin: 20% 0;
+    overflow: hidden;
+}
+
+#userInfoList {
+    display: inline;
+    /* width: 30%; */
+    /* margin: 20% 0; */
 }

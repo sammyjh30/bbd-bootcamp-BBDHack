@@ -45,6 +45,10 @@ export default class Home extends Component {
         <div className="content">
           <div id="imageScan">
             {this.state.scanStart === true ? <VideoInput label={this.state.label} setLabel={this.setLabel} /> : null}
+            <div id="userInfoList">
+            <br/><br/><br/><br/>>
+            <p>Will display user info retrieved from database</p>
+            </div>
           </div>
           <div id="vendingMachine">
             <div id="vendingBackground">

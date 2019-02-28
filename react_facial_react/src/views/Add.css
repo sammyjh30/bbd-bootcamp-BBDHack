@@ -94,6 +94,12 @@ a {
   margin: 2% 15%;
 }
 
+#face-front-box {
+  width: 100px;
+  height: 100px;
+  background-color: rgba(115, 115, 116, 0.63);
+  margin: 2% 15%;
+}
 
 #newImages {
   padding: 5%;

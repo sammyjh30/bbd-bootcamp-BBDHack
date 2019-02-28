@@ -54,7 +54,27 @@ import "./App.css";
 import Routes from "./Routes";
 
 class App extends Component {
+  getUserImages() {
+    //Make database call
+    //put info into file (Chanel)
+  }
+
+  addUser(e, newUser) {
+    e.preventDefault();
+    //Add user to database
+    //Call the re-reading of file
+    this.getUserImages();
+  }
+
+  componentWillMount() {
+    this.getUserImages();
+  }
+
   render() {
+
+    const childProps = {
+      addUser            : this.addUser
+    };
     return (
       <div className="App container">
       <Navbar fluid collapseOnSelect>
@@ -72,7 +92,7 @@ class App extends Component {
           </Nav>
         </Navbar.Collapse>
       </Navbar>
-      <Routes />
+      <Routes childProps={childProps}/>
     </div>
     );
   }

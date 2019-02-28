@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { FormGroup, FormControl, ControlLabel } from "react-bootstrap";
+import { FormGroup, FormControl, ControlLabel, Button } from "react-bootstrap";
 import "./Add.css";
 import VideoInput from './VideoInput';
 
@@ -14,18 +14,42 @@ export default class Add extends Component {
             face_front: null,
             face_left: null,
             face_right: null,
-            getImage: false
+            front_descriptor: null,
+            left_descriptor: null,
+            right_descriptor: null,
         };
         this.child = React.createRef();
         this.changePic = this.changePic.bind(this);
         this.submitInfo = this.submitInfo.bind(this);
     }
+
+    validateUser() {
+        if (this.state.firstname == null ||
+        this.state.lastname == null ||
+        this.state.bbdID == null ||
+        this.state.position == null ||
+        this.state.front_descriptor == null ||
+        this.state.left_descriptor == null ||
+        this.state.right_descriptor == null) {
+            return false
+        } else {
+            return  true
+        }
+    }
     submitInfo(e) {
         e.preventDefault();
-        console.log("New information:");
-        console.info(this.state);
-        //Call IMG scanner to get desriptors
-        //Send through to database
+        var newUser = {
+            firstname               : this.state.firstname,
+            lastname                : this.state.lastname,
+            bbdID                   : this.state.bbdID,
+            position                : this.state.position,
+            front_descriptor        : "[" + this.state.front_descriptor.join() + "]",
+            left_descriptor         : "[" + this.state.left_descriptor.join() + "]",
+            right_descriptor        : "[" + this.state.right_descriptor.join() + "]"
+        };
+        //For Demo
+        // console.log("New user:");
+        // console.info(newUser);
     }
     handleChange = event => {
         this.setState({
@@ -38,17 +62,17 @@ export default class Add extends Component {
         this.child.current.getAlert(e.currentTarget.getAttribute('data-column'));
     };
 
-    changePic(side, img) {
-        console.log("side= " + side + "     img= " + img);
-        // console.log(this.state.lastname);
+    changePic(side, img, descriptor) {
         if (img != null && side != null) {
             if (side == "front") {
-                console.log("Entered front");
                 this.setState({ face_front: img });
+                this.setState({ front_descriptor: descriptor });
             } else if (side == "left") {
                 this.setState({ face_left: img });
+                this.setState({ left_descriptor: descriptor });
             } else if (side == "right") {
                 this.setState({ face_right: img });
+                this.setState({ right_descriptor: descriptor });
             }
 
         }
@@ -139,7 +163,12 @@ export default class Add extends Component {
                     </div>
                     <div id="register-button">
                         <hr />
-                        <button type="submit" className="registerbtn" onClick={this.submitInfo}>Register</button>
+                        <Button bsSize="large"
+                                className="registerbtn"
+                                onClick={this.submitInfo}
+                                disabled={!this.validateUser()}>
+                                Register
+                            </Button>
                         <hr />
                     </div>
                 </form>
