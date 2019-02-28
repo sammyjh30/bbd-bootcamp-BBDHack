@@ -47,9 +47,9 @@ export default class Add extends Component {
             left_descriptor         : "[" + this.state.left_descriptor.join() + "]",
             right_descriptor        : "[" + this.state.right_descriptor.join() + "]"
         };
-        //For Demo
-        // console.log("New user:");
-        // console.info(newUser);
+        // For Demo
+        console.log("New user:");
+        console.info(newUser);
     }
     handleChange = event => {
         this.setState({
